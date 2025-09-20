@@ -268,18 +268,16 @@
         <p class="tagline">Unlocking global untapped datasets for biotech innovation</p>
         <p class="subtitle">The future of biotech data discovery</p>
         
-        <form class="signup-form" id="signupForm">
-            <input 
-                type="email" 
-                class="email-input" 
-                placeholder="Enter your email"
-                required
-                id="emailInput"
-            >
-            <button type="submit" class="join-btn" id="joinBtn">
-                Join Waitlist
-            </button>
-        </form>
+        <form class="signup-form" action="https://formspree.io/f/xkgvdewo" method="POST">
+    <input 
+        type="email" 
+        class="email-input" 
+        name="email"
+        placeholder="Enter your email"
+        required
+    >
+    <button type="submit" class="join-btn">Join Waitlist</button>
+</form>
         
         <p class="waitlist-text">Be the first to access global data for global prediction</p>
         
@@ -337,34 +335,22 @@
         }
 
         // Handle form submission
-        document.getElementById('signupForm').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const btn = document.getElementById('joinBtn');
-  const email = document.getElementById('emailInput').value;
-
-  try {
-    const res = await fetch('/submitEmail', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email })
-    });
-
-    const data = await res.json();
-    if (data.success) {
-      btn.textContent = 'Joined!';
-      btn.classList.add('success');
-      setTimeout(() => {
-        btn.textContent = 'Join Waitlist';
-        btn.classList.remove('success');
-        document.getElementById('emailInput').value = '';
-      }, 2000);
-    } else {
-      alert('Error: ' + data.error);
-    }
-  } catch (err) {
-    alert('Something went wrong');
-  }
-});
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('joinBtn');
+            const email = document.getElementById('emailInput').value;
+            
+            if (email) {
+                btn.textContent = 'Joined!';
+                btn.classList.add('success');
+                
+                setTimeout(() => {
+                    btn.textContent = 'Join Waitlist';
+                    btn.classList.remove('success');
+                    document.getElementById('emailInput').value = '';
+                }, 2000);
+            }
+        });
 
         // Add hover effects to stats
         document.querySelectorAll('.stat-item').forEach(item => {
