@@ -269,16 +269,16 @@
         <p class="subtitle">The future of biotech data discovery</p>
         
         <form id="signupForm" class="signup-form" action="https://formspree.io/f/xkgvdewo" method="POST">
-    <input 
-        type="email" 
-        id="emailInput"
-        class="email-input" 
-        name="email"
-        placeholder="Enter your email"
-        required
-    >
-    <button type="submit" id="joinBtn" class="join-btn">Join Waitlist</button>
-</form>
+            <input 
+                type="email" 
+                id="emailInput"
+                class="email-input" 
+                name="email"
+                placeholder="Enter your email"
+                required
+            >
+            <button type="submit" id="joinBtn" class="join-btn">Join Waitlist</button>
+        </form>
         
         <p class="waitlist-text">Be the first to access global data for global prediction</p>
         
@@ -335,9 +335,8 @@
             });
         }
 
-        // Handle form submission
-        document.getElementById('signupForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        // Handle form submission (allow real submission to Formspree)
+        document.getElementById('signupForm').addEventListener('submit', function() {
             const btn = document.getElementById('joinBtn');
             const email = document.getElementById('emailInput').value;
             
@@ -351,6 +350,7 @@
                     document.getElementById('emailInput').value = '';
                 }, 2000);
             }
+            // No preventDefault → form will still submit
         });
 
         // Add hover effects to stats
